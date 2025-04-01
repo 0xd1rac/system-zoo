@@ -1,6 +1,8 @@
 from monkey_token.token import Token
+from monkey_token.token_type import TokenType
 from lexer.lexer import Lexer
 from ast.ast import *
+from ast.ast import Program, LetStatement, Identifier
 
 
 class Parser:
@@ -20,6 +22,38 @@ class Parser:
     
     def parse_program(self) -> Program:
         """Parses the entire program and returns an AST Program node"""
-        
-        
+        program = Program()
+        while self.cur_token.type != TokenType.EOF:
+            stmt = self.parse_statement()
+            if stmt is not None:
+                program.statements.append(stmt)
+
+            self.next_token()
+        return program
+    
+    def parse_statement(self):
+        if self.cur_token.type == TokenType.LET:
+            return self.parse_let_statement()
         return None 
+    
+    def parse_let_statement(self):
+        stmt = LetStatement(token=self.cur_token, name=None, value=None)
+
+        # Check that the next token is an identifier
+        if self.peek_token.type != TokenType.IDENT:
+            return None
+
+        self.next_token() # Now cur_tk=oken is the identifier
+        stmt.name = Identifier(token=self.cur_token, value=self.cur_token.literal)
+
+        # Ensure the following token is an assignemnt operator, then advance 
+        if self.peek_token.type != TokenType.ASSIGN:
+            return None
+        
+        self.next_token()
+
+        # Skip parinsg the expression until we encounter a semicolon
+        while self.cur_token.type != TokenType.SEMICOLON:
+            self.next_token()
+        
+        return stmt
