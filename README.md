@@ -137,3 +137,127 @@ Benchmark and compare different locking mechanisms across multiple cores.
 - Shared memory between processes (not threads)
 - Named semaphores and lifetime management
 - Basics of IPC (Inter-process communication)
+
+# 💻 OS Memory Management Project Series (C)
+
+## 🧭 1. Virtual Address Visualizer
+
+**Topics:** Address Spaces, Address Translation  
+**Goal:** Build a CLI tool that takes a virtual address and visualizes how it maps to segments (code, heap, stack) and physical memory (if possible).
+
+**Features:**
+- Parse `/proc/self/maps` on Linux
+- Translate given pointer addresses to segment labels
+- Display binary layout and page number breakdown
+
+---
+
+## 📦 2. Custom `malloc()` and `free()` (Memory Allocator)
+
+**Topics:** Memory API, Free Space Management  
+**Goal:** Implement your own memory allocator using `sbrk()` or `mmap()`.
+
+**Features:**
+- Implement first-fit and best-fit strategies
+- Support `malloc()`, `free()`, `calloc()`, and `realloc()`
+- Track memory fragmentation
+
+---
+
+## 🧮 3. Manual Page Table Translator
+
+**Topics:** Address Translation, Paging  
+**Goal:** Simulate a page table in user space and translate virtual → physical addresses manually.
+
+**Features:**
+- Implement single-level and multi-level page tables
+- Perform bit-level address breakdown
+- Support page faults and invalid entries
+
+---
+
+## 📊 4. Paging Visual Simulator
+
+**Topics:** Paging, TLBs, Page Tables  
+**Goal:** Build a simulator for paging and TLB behavior over a series of memory accesses.
+
+**Features:**
+- Simulate TLB hits/misses
+- Track page table lookups
+- Support FIFO and LRU page replacement
+
+---
+
+## 🗺️ 5. Segmentation Fault Injector
+
+**Topics:** Segmentation  
+**Goal:** Write code that intentionally causes segmentation faults and catch them using `sigaction()` to explore boundary protections.
+
+**Features:**
+- Stack overflow
+- Out-of-bounds heap access
+- Null pointer dereference + logging
+
+---
+
+## 🔁 6. Buddy Memory Allocator
+
+**Topics:** Free Space Management  
+**Goal:** Implement the buddy system memory allocator with recursive splitting and merging.
+
+**Features:**
+- Use power-of-two block sizes
+- Track internal/external fragmentation
+- Visualize allocator state
+
+---
+
+## ⚡ 7. TLB Hit Rate Benchmark
+
+**Topics:** Translation Lookaside Buffers (TLB)  
+**Goal:** Benchmark access patterns that produce TLB hits vs misses.
+
+**Features:**
+- Vary strides (cache line vs page size)
+- Report timing and TLB miss rates
+- Use `perf stat` on Linux for measurements
+
+---
+
+## 🔃 8. Page Replacement Simulator
+
+**Topics:** Swapping Policies, Advanced Page Tables  
+**Goal:** Simulate different page replacement algorithms.
+
+**Features:**
+- Implement FIFO, LRU, Clock, and Optimal
+- Feed in memory access traces
+- Visualize page faults and frame state
+
+---
+
+## 🧠 9. LRU Cache with Backing Store
+
+**Topics:** Swapping Mechanisms  
+**Goal:** Build an LRU-based memory cache backed by disk (a file).
+
+**Features:**
+- Evict least-recently-used pages
+- Simulate disk reads/writes with `fread()` and `fwrite()`
+- Track swap-in and swap-out counts
+
+---
+
+## 🧰 10. Virtual Memory System End-to-End
+
+**Topics:** Complete VM Systems  
+**Goal:** Build a minimal OS-like VM system simulator combining page table, TLB, allocator, and swap policies.
+
+**Features:**
+- Virtual to physical mapping
+- Page faults + swapping
+- Backing store simulation
+- Logging + stats
+
+---
+
