@@ -138,6 +138,64 @@ Benchmark and compare different locking mechanisms across multiple cores.
 - Named semaphores and lifetime management
 - Basics of IPC (Inter-process communication)
 
+# 🔄 Concurrent Queue Implementation in C
+
+## 🧠 Goal:
+Implement a **thread-safe concurrent queue** that supports multiple producers and consumers with minimal locking.
+
+---
+
+## 📦 What You'll Build:
+
+A bounded/unbounded FIFO queue with:
+- `enqueue()` — safely adds an element.
+- `dequeue()` — safely removes and returns an element.
+- Support for multiple threads calling both at the same time.
+- Internal locking or lock-free design (your choice).
+
+---
+
+## 🔐 Version 1: With Locks
+
+Use:
+- `pthread_mutex_t` for mutual exclusion.
+- `pthread_cond_t` for full/empty condition signaling (bounded version).
+
+Bonus:
+- Add optional timeout-based dequeue using `pthread_cond_timedwait`.
+
+---
+
+## ⚙️ Version 2: Lock-Free (Advanced)
+
+Use:
+- **Compare-And-Swap (CAS)** operations (`__sync_val_compare_and_swap` or C11 atomics).
+- Implement **Michael and Scott's lock-free queue** if you’re up for the challenge.
+
+---
+
+## ✅ What You'll Learn:
+
+- How to safely share mutable data between threads.
+- Deadlock prevention in producer-consumer systems.
+- (If lock-free) Memory ordering, ABA problems, and atomic primitives.
+
+---
+
+## 🧪 Bonus Ideas:
+
+- Add performance benchmarking under 2, 4, 8 threads.
+- Use this queue as a foundation for a **job queue** or **thread pool**.
+- Compare lock-based vs lock-free implementations.
+
+---
+
+## 🛠 Tools:
+
+- C + POSIX threads (`pthread.h`)
+- Optionally use `valgrind` or `helgrind` to detect data races.
+
+
 # 💻 OS Memory Management Project Series (C)
 
 ## 🧭 1. Virtual Address Visualizer
@@ -257,6 +315,8 @@ Benchmark and compare different locking mechanisms across multiple cores.
 - Virtual to physical mapping
 - Page faults + swapping
 - Backing store simulation
+
+ 
 - Logging + stats
 
 ---
