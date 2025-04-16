@@ -9,7 +9,7 @@
 - Add work stealing between worker queues.
 - Add a timer thread to simulate scheduled jobs.
 
-  ##  Project 2: Bounded Buffer (Producer-Consumer)
+## Project 2: Bounded Buffer (Producer-Consumer)
   **Goal:** Simulate multiple producers and consumers using a bounded circular buffer.
 You’ll need:
 - A mutex to protect buffer access.
