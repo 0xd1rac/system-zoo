@@ -75,3 +75,65 @@ Implement both:
 **Bonus:**
 - Add pedestrian crossing as another semaphore.
 - Add traffic light cycles using timed threads.
+
+## Deadlock Detection Tool
+
+**Goal:**  
+Implement a deadlock detection system that tracks locks held and requested by threads.
+
+**What to Implement:**
+- A resource graph (thread ↔ lock relationships)
+- Periodic check for cycles in the graph
+- Detection alert if a cycle is found (i.e., deadlock)
+
+**What You’ll Learn:**
+- How to track lock ownership across threads
+- Graph-based cycle detection
+- How real systems (like Java's `jstack`) detect deadlocks
+
+## Rate Limiter or Watchdog Timer with Signals
+
+**Goal:**  
+Create a timer-based system that monitors or limits thread behavior using signals.
+
+**What to Implement:**
+- Use `sigaction()` to catch `SIGALRM`
+- Set interval timers using `setitimer()`
+- Use it to limit how often a function runs, or detect if a thread stalls
+
+**What You’ll Learn:**
+- Asynchronous signal handling
+- Signal-safe functions and reentrancy
+- Timers and watchdog patterns used in system daemons
+
+Inter-Process Shared Memory + Semaphores
+
+**Goal:**  
+Implement a shared memory message-passing system between forked processes.
+
+**What to Implement:**
+- Create shared memory with `shm_open` and `mmap`
+- Synchronize access using `sem_open`
+- Fork multiple processes that produce/consume messages
+
+ Multicore Lock Benchmarking
+
+**Goal:**  
+Benchmark and compare different locking mechanisms across multiple cores.
+
+**What to Implement:**
+- Custom test harness using 2, 4, and 8 threads
+- Measure throughput and latency of:
+  - `pthread_mutex`
+  - Spinlock (custom and `pthread_spinlock`)
+  - Ticket lock (custom)
+
+**What You’ll Learn:**
+- Effects of CPU contention and cache coherence
+- Performance tradeoffs between lock types
+- NUMA implications
+
+**What You’ll Learn:**
+- Shared memory between processes (not threads)
+- Named semaphores and lifetime management
+- Basics of IPC (Inter-process communication)
