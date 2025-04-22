@@ -1,0 +1,101 @@
+# Minimal but easily extended spec for MIPS32‑R2
+# Each entry:
+#   type   : R | I | J
+#   opcode : int (decimal)
+#   funct  : int  (R‑type only)
+#   format : informal operand pattern (for your parser’s mini‑grammars)
+
+add:
+  type: R
+  opcode: 0
+  funct: 32 #0x20
+  format: "rd, rs, rt"
+
+sub:
+  type: R
+  opcode: 0
+  funct: 34      # 0x22
+  format: "rd, rs, rt"
+  
+and:
+  type: R
+  opcode: 0
+  funct: 36
+  format: "rd, rs, rt"
+
+or:
+  type: R
+  opcode: 0
+  funct: 37
+  format: "rd, rs, rt"
+
+
+slt:
+  type: R
+  opcode: 0
+  funct: 42
+  format: "rd, rs, rt"
+
+
+sll:
+  type: R
+  opcode: 0
+  funct: 0
+  format: "rd, rt, shamt"
+
+
+jr:
+  type: R
+  opcode: 0
+  funct: 8
+  format: "rs"
+
+
+syscall:
+  type: R
+  opcode: 0
+  funct: 12
+  format: ""
+
+
+addi:
+  type: I
+  opcode: 8
+  format: "rt, rs, imm16"
+
+lui:
+  type: I
+  opcode: 15
+  format: "rt, imm16"
+
+
+lw:
+  type: I
+  opcode: 35
+  format: "rt, offset(rs)"
+
+sw:
+  type: I
+  opcode: 43
+  format: "rt, offset(rs)"
+
+
+beq:
+  type: I
+  opcode: 4
+  format: "rs, rt, label"
+
+bne:
+  type: I
+  opcode: 5
+  format: "rs, rt, label"
+
+j:
+  type: J
+  opcode: 2
+  format: "label"
+
+jal:
+  type: J
+  opcode: 3
+  format: "label"
